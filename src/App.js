@@ -1,27 +1,22 @@
-import React, { useState } from "react";
-import TodoList from "./components/TodoList";
-import Navbar from "./components/Navbar";
-import ToDoForm from "./components/ToDoForm"
+import React from 'react';
+import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router-dom';
+import ToDo from './views/ToDo';
+import ToDoForm from './components/ToDoForm';
+import PokemonDisplay from './views/PokemonDisplay';
 
-function App() {
-  let name = "Yosef";
-  const[toDos, setToDos] = useState([]);
+export default function App() {
+    let name = 'Yosef';
 
-  const addToList = task => {
-    setToDos([...toDos, task]);
-  }
-
-  return (
-    <div className="App">
-      <Navbar username = {name} />
-      <ToDoForm  addToList={addToList}/>
-      
-      <button class="btn btn-sm btn-warning" id= "clear" type="submit">Clear Tasks</button>
-      <div>{toDos.length} Tasks Left to Do</div>
-    </div>
-    
-  );
-
+    return (
+        <div className="App">
+            <Navbar username={name}/>
+                <div className='container'>
+                    <Routes>
+                        <Route path='/' element={<ToDo />} />
+                        <Route path='/pokemon' element={<PokemonDisplay />} />
+                    </Routes>
+                </div>
+        </div>
+    );
 }
-
-export default App;
